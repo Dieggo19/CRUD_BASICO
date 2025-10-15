@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1760566409">
-  <project timestamp="1760566409" name="Clover Coverage">
+<coverage generated="1760567866">
+  <project timestamp="1760567866" name="Clover Coverage">
     <package name="App\Http\Controllers">
       <file name="C:\Users\Diiego\Desktop\laravel\crud-laravel\app\Http\Controllers\Controller.php">
         <class name="App\Http\Controllers\Controller" namespace="App\Http\Controllers">
