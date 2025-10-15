@@ -1,4 +1,4 @@
-name: Laravel CI with SonarCloud
+name: Laravel CI with SonarCloud (Debug)
 
 on:
   push:
@@ -14,22 +14,30 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.5.3
         with:
-          fetch-depth: 0  # importante para SonarCloud
+          fetch-depth: 0
 
       - name: Setup PHP
         uses: shivammathur/setup-php@8f30b889bf0cc6e6a6e03a10e1e5cfc8dc5cbb5e # v2.30.4
         with:
-          php-version: '8.2'   # ajusta si usas otra versión
+          php-version: '8.2'
           coverage: xdebug
+
+      - name: Debug PHP extensions
+        run: php -m
 
       - name: Install dependencies
         run: composer install --prefer-dist --no-progress
 
       - name: Run tests with coverage
-        run: php artisan test --coverage-clover=coverage.xml
+        run: |
+          php artisan test --coverage-clover=coverage.xml
+          echo "==== Listando archivos generados en el workspace ===="
+          ls -l
+          echo "==== Primeras líneas del coverage.xml (si existe) ===="
+          head -n 20 coverage.xml || echo "coverage.xml no encontrado"
 
       - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@ab92f4e4152ee255c5036e52a6a3372fa51179dd # master commit
+        uses: SonarSource/sonarcloud-github-action@ab92f4e4152ee255c5036e52a6a3372fa51179dd
         with:
           args: >
             -Dsonar.projectKey=Dieggo19_CRUD_BASICO
