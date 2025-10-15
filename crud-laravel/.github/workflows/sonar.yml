@@ -12,12 +12,12 @@ jobs:
 
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.5.3
         with:
-          fetch-depth: 0
+          fetch-depth: 0  # importante para SonarCloud
 
       - name: Setup PHP
-        uses: shivammathur/setup-php@v2
+        uses: shivammathur/setup-php@8f30b889bf0cc6e6a6e03a10e1e5cfc8dc5cbb5e # v2.30.4
         with:
           php-version: '8.2'   # ajusta si usas otra versión
           coverage: xdebug
@@ -29,7 +29,7 @@ jobs:
         run: php artisan test --coverage-clover=coverage.xml
 
       - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@master
+        uses: SonarSource/sonarcloud-github-action@ab92f4e4152ee255c5036e52a6a3372fa51179dd # master commit
         with:
           args: >
             -Dsonar.projectKey=Dieggo19_CRUD_BASICO
