@@ -21,7 +21,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.2'   # o la versión que uses en tu Laravel
+          php-version: '8.2'   # ajusta a tu versión de PHP
           coverage: xdebug
 
       - name: Install dependencies
